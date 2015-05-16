@@ -1,17 +1,18 @@
+import React from 'react';
 
-module.exports = React.createClass({
-    getInitialState: function()
-    {
-        return {
-            shimX : 0,
-            shimY : 0
-        };
-    },
-    render: function()
-    {
+export default class MakerCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            shimX: 0,
+            shimY: 0
+        }
+    }
+
+    render() {
         var shimStyle = {
             display: "inline",
-            position:'absolute',
+            position: 'absolute',
             top: this.state.shimY,
             left: this.state.shimX
         };
@@ -25,25 +26,22 @@ module.exports = React.createClass({
                     {this.props.children}
                 </span>
             </div>
-            );
-    },
-
-    componentDidMount: function()
-    {
-        window.addEventListener('resize', this.updateShimPosition);
-        this.updateShimPosition();
-    },
-
-    updateShimPosition: function()
-    {
-        var outerBox = this.refs.outerBox.getDOMNode();
-        var shim = this.refs.centerShim.getDOMNode();
-
-        this.setState({
-            shimX: Math.round((outerBox.offsetWidth-shim.offsetWidth)/2),
-            shimY: Math.round((outerBox.offsetHeight-shim.offsetHeight)/2)
-        });
+        );
     }
 
+    componentDidMount() {
+        window.addEventListener('resize', () => {this.updateShimPosition()});
+        this.updateShimPosition();
+    }
 
-});
+    updateShimPosition() {
+        console.log('cent');
+        var outerBox = this.refs.outerBox.getDOMNode();
+        var shim = this.refs.centerShim.getDOMNode();
+        this.setState({
+            shimX: Math.round((outerBox.offsetWidth - shim.offsetWidth) / 2),
+            shimY: Math.round((outerBox.offsetHeight - shim.offsetHeight) / 2)
+        });
+
+    }
+}

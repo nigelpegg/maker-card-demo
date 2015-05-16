@@ -4,6 +4,7 @@ var htmlreplace = require('gulp-html-replace');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
+var babelify = require('babelify');
 var reactify = require('reactify');
 var streamify = require('gulp-streamify');
 var sass = require('gulp-sass');
@@ -62,12 +63,13 @@ gulp.task('copy', function(){
 gulp.task('watch', function() {
     gulp.watch(path.HTML, ['copy']);
 
-    var watcher  = watchify(browserify({
+    var b = browserify({
         entries: [path.ENTRY_POINT],
-        transform: [reactify],
         debug: true,
         cache: {}, packageCache: {}, fullPaths: true
-    }));
+    });
+    b.transform(babelify);
+    var watcher  = watchify(b);
 
     return watcher.on('update', function () {
         watcher

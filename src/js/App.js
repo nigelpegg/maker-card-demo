@@ -1,17 +1,15 @@
-var React = require('react');
-// Here we put our React instance to the global scope. Make sure you do not put it
-// into production and make sure that you close and open your console if the
-// DEV-TOOLS does not display
-window.React = React;
+'use strict';
 
-var MakerCard = require('./MakerCard');
-var Centerer = require('./Centerer');
+import React from 'react';
+import MakerCard from './MakerCard';
+import FullBleed from './FullBleed';
+import Centerer from './Centerer';
 
 React.render(
-    <div className="fullScreen">
+    <FullBleed>
         <Centerer>
             <MakerCard />
         </Centerer>
-    </div>,
+    </FullBleed>,
     document.getElementById('app')
 );
