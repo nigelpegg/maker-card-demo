@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class MakerCard extends React.Component {
+export default class Centerer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +24,7 @@ export default class MakerCard extends React.Component {
             height: '100%'
         };
         return (
-            <div {...this.props} ref="outerBox" style={outerStyle}>
+            <div ref="outerBox" style={outerStyle}>
                 <span ref="centerShim" style={shimStyle}>
                     {this.props.children}
                 </span>
