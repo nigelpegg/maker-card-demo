@@ -19,7 +19,7 @@ export default class FullBleed extends React.Component {
             <div style={divStyles}>
                 {this.props.children}
             </div>
-            );
+        );
     }
 
     componentDidMount() {
