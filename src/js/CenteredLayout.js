@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Centerer extends React.Component {
+export default class CenteredLayout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

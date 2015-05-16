@@ -4,7 +4,7 @@ import React from 'react';
 import MakerCard from './MakerCard';
 import FullBleedLayout from './FullBleedLayout';
 import StretchedMedia from './StretchedMedia';
-import Centerer from './Centerer';
+import CenteredLayout from './CenteredLayout';
 
 window.React = React;
 
@@ -12,12 +12,15 @@ React.render(
     <div>
         <FullBleedLayout>
             <StretchedMedia />
-            <Centerer>
+            <CenteredLayout>
                 <MakerCard />
-            </Centerer>
+            </CenteredLayout>
         </FullBleedLayout>
-        <div className="maker-card">
-            TESTING
+
+        <div>
+            <p> TESTING BELOW FULLBLEED 1</p>
+            <p> TESTING BELOW FULLBLEED 2</p>
+            <p> TESTING BELOW FULLBLEED 3</p>
         </div>
 
     </div>,
