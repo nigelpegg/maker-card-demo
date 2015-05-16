@@ -22,20 +22,42 @@ var path = {
 
 };
 
+var failed = false;
+var failTimeout;
+
+function checkSuccess()
+{
+    failTimeout = setTimeout(function()
+    {
+        // the fact we made it to the timeout means no error was thrown this build
+        if (failed) {
+            failed = false;
+            notifier.notify({
+                'title': 'Build Fixed',
+                'message': "Good job!",
+                wait: false
+            });
+        }
+    }, 500);
+}
+
 function notifyError(p_err)
 {
     console.log(p_err.message);
     notifier.notify({
         'title': 'Build Error',
         'message': p_err.message,
-        wait: false,
-
-    });}
+        wait: false
+    });
+    clearTimeout(failTimeout);
+    failed = true;
+}
 
 gulp.task('copy', function(){
     gulp.src(path.HTML)
         .pipe(gulp.dest(path.DEST));
 });
+
 
 gulp.task('watch', function() {
     gulp.watch(path.HTML, ['copy']);
@@ -54,6 +76,7 @@ gulp.task('watch', function() {
             .pipe(source(path.OUT))
             .pipe(gulp.dest(path.DEST_SRC));
         console.log('Updated');
+        checkSuccess();
     })
         .bundle()
         .on('error', notifyError)
@@ -91,6 +114,7 @@ gulp.task('compile-scss', function() {
             cascade: false
         }))
         .pipe(gulp.dest(path.DEST_SRC));
+    checkSuccess();
 });
 
 gulp.task('watch-scss', function() {
