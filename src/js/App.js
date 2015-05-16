@@ -9,7 +9,7 @@ var Centerer = require('./Centerer');
 
 React.render(
     <div className="fullScreen">
-        <Centerer className="fullScreen">
+        <Centerer>
             <MakerCard />
         </Centerer>
     </div>,

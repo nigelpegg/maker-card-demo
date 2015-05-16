@@ -15,8 +15,12 @@ module.exports = React.createClass({
             top: this.state.shimY,
             left: this.state.shimX
         };
+        var outerStyle = {
+            width: '100%',
+            height: '100%'
+        };
         return (
-            <div {...this.props} ref="outerBox">
+            <div {...this.props} ref="outerBox" style={outerStyle}>
                 <span ref="centerShim" style={shimStyle}>
                     {this.props.children}
                 </span>
