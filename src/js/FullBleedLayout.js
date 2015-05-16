@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class FullBleed extends React.Component {
+export default class FullBleedLayout extends React.Component {
 
     constructor(props) {
         super(props);

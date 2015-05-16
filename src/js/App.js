@@ -2,21 +2,24 @@
 
 import React from 'react';
 import MakerCard from './MakerCard';
-import FullBleed from './FullBleed';
+import FullBleedLayout from './FullBleedLayout';
+import StretchedMedia from './StretchedMedia';
 import Centerer from './Centerer';
 
 window.React = React;
 
 React.render(
     <div>
-        <FullBleed>
+        <FullBleedLayout>
+            <StretchedMedia />
             <Centerer>
                 <MakerCard />
             </Centerer>
-        </FullBleed>
+        </FullBleedLayout>
         <div className="maker-card">
             TESTING
         </div>
+
     </div>,
 
     document.body
