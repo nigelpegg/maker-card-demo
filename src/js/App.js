@@ -11,5 +11,5 @@ React.render(
             <MakerCard />
         </Centerer>
     </FullBleed>,
-    document.getElementById('app')
+    document.body
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class FullBleed extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +29,6 @@ export default class FullBleed extends React.Component {
     }
 
     updateDivSize() {
-        console.log('size');
         var w = window.innerWidth
             || document.documentElement.clientWidth
             || document.body.clientWidth;
