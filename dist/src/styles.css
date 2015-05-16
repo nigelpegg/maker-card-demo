@@ -1,4 +1,14 @@
-html, body, .fullScreen {
+body, html {
   height: 100%;
-  width: 100%;
+  background-color: #000;
   margin: 0px; }
+
+.fullScreen {
+  width: 100%;
+  height: 100%; }
+
+.maker-card {
+  width: 420px;
+  height: 530px;
+  background-color: #fff;
+  border-radius: 2px; }

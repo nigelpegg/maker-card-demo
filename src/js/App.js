@@ -4,12 +4,14 @@ var React = require('react');
 // DEV-TOOLS does not display
 window.React = React;
 
-var Parent = require('./Parent');
+var MakerCard = require('./MakerCard');
 var Centerer = require('./Centerer');
 
 React.render(
-    <Centerer className="fullScreen">
-        <Parent />
-    </Centerer>,
+    <div className="fullScreen">
+        <Centerer className="fullScreen">
+            <MakerCard />
+        </Centerer>
+    </div>,
     document.getElementById('app')
 );

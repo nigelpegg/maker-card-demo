@@ -11,15 +11,15 @@ module.exports = React.createClass({
     {
         var shimStyle = {
             display: "inline",
-            position:'relative',
+            position:'absolute',
             top: this.state.shimY,
             left: this.state.shimX
         };
         return (
             <div {...this.props} ref="outerBox">
-                <div ref="centerShim" style={shimStyle}>
+                <span ref="centerShim" style={shimStyle}>
                     {this.props.children}
-                </div>
+                </span>
             </div>
             );
     },
