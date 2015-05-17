@@ -19,12 +19,22 @@ export default class Application extends React.Component {
         return (
             <div>
                 <FullBleedLayout>
-                    <StretchedMedia src={this.bgs[this.state.bgIdx%this.bgs.length]} className="transition-all" />
+                    <StretchedMedia src={ this.getCurrentBG() } className="transition-all" />
                     <CenteredLayout className="transition-all">
                         <MakerCard onClick={()=>{ this.incrementBG() }} />
                     </CenteredLayout>
                 </FullBleedLayout>
 
+                <div>
+                    <p> TESTING BELOW FULLBLEED 1</p>
+                    <p> TESTING BELOW FULLBLEED 2</p>
+                    <p> TESTING BELOW FULLBLEED 3</p>
+                </div>
+                <div>
+                    <p> TESTING BELOW FULLBLEED 1</p>
+                    <p> TESTING BELOW FULLBLEED 2</p>
+                    <p> TESTING BELOW FULLBLEED 3</p>
+                </div>
                 <div>
                     <p> TESTING BELOW FULLBLEED 1</p>
                     <p> TESTING BELOW FULLBLEED 2</p>
@@ -39,5 +49,9 @@ export default class Application extends React.Component {
         this.setState({
             bgIdx: this.state.bgIdx+1
         });
+    }
+
+    getCurrentBG() {
+        return this.bgs[this.state.bgIdx % this.bgs.length];
     }
 }

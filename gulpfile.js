@@ -63,13 +63,14 @@ gulp.task('copy', function(){
 gulp.task('watch', function() {
     gulp.watch(path.HTML, ['copy']);
 
-    var b = browserify({
-        entries: [path.ENTRY_POINT],
-        debug: true,
-        cache: {}, packageCache: {}, fullPaths: true
-    });
-    b.transform(babelify);
-    var watcher  = watchify(b);
+    var watcher  = watchify(
+        browserify({
+            entries: [path.ENTRY_POINT],
+            transform: [babelify],
+            debug: true,
+            cache: {}, packageCache: {}, fullPaths: true
+        })
+    );
 
     return watcher.on('update', function () {
         watcher
