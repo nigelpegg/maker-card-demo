@@ -32,7 +32,7 @@ export default class StretchedMedia extends React.Component {
         };
         return (
             <div ref="outerBox" style={outerStyle}>
-                <img src={this.props.src} style={imgStyle} ref="media" onLoad={ ()=> {this.updateLayout()} } />
+                <img {...this.props} style={imgStyle} ref="media" onLoad={ ()=> {this.updateLayout()} } />
             </div>
         );
     }

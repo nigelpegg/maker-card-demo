@@ -12,15 +12,15 @@ export default class Application extends React.Component {
             bgIdx: 0
         };
 
-        this.bgs = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg', 'images/bg4.jpg']
+        this.bgs = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg', 'images/bg4.jpg'];
     }
 
     render() {
         return (
             <div>
                 <FullBleedLayout>
-                    <StretchedMedia src={this.bgs[this.state.bgIdx%this.bgs.length]} />
-                    <CenteredLayout>
+                    <StretchedMedia src={this.bgs[this.state.bgIdx%this.bgs.length]} className="transition-all" />
+                    <CenteredLayout className="transition-all">
                         <MakerCard onClick={()=>{ this.incrementBG() }} />
                     </CenteredLayout>
                 </FullBleedLayout>

@@ -25,7 +25,7 @@ export default class CenteredLayout extends React.Component {
         };
         return (
             <div ref="outerBox" style={outerStyle}>
-                <span ref="centerShim" style={shimStyle}>
+                <span ref="centerShim" style={shimStyle} {...this.props} >
                     {this.props.children}
                 </span>
             </div>

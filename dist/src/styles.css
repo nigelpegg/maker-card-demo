@@ -7,3 +7,6 @@ body, html {
   height: 530px;
   background-color: #fff;
   border-radius: 2px; }
+
+.transition-all {
+  transition: all 500ms; }
