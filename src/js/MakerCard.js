@@ -7,7 +7,7 @@ export default class MakerCard extends React.Component {
 
     render() {
         return (
-            <div className="maker-card">
+            <div {...this.props} className="maker-card">
                 I Make
             </div>
         );

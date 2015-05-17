@@ -27,11 +27,12 @@ export default class StretchedMedia extends React.Component {
         var outerStyle = {
             position: 'absolute',
             width: '100%',
-            height: '100%'
+            height: '100%',
+            overflow: 'hidden'
         };
         return (
             <div ref="outerBox" style={outerStyle}>
-                <img src="images/bg1.jpg" style={imgStyle} ref="media" onLoad={ ()=> {this.updateLayout()} } />
+                <img src={this.props.src} style={imgStyle} ref="media" onLoad={ ()=> {this.updateLayout()} } />
             </div>
         );
     }
