@@ -1,36 +1,39 @@
-import React from 'react';
+import ModelBoundComponent from './ModelBoundComponent';
 import MakerCard from './MakerCard';
 import FullBleedLayout from './FullBleedLayout';
 import StretchedMedia from './StretchedMedia';
 import CenteredLayout from './CenteredLayout';
+import BindableModel from './BindableModel';
 
-export default class Application extends React.Component {
+export default class Application extends ModelBoundComponent {
     constructor(props) {
         super(props);
 
-        this.state = {
-            bgIdx: 0
-        };
+        this._bgs = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg', 'images/bg4.jpg'];
+        this._bgIdx = 0;
 
-        this.bgs = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg', 'images/bg4.jpg'];
+        this._profile = new BindableModel({name:'Nigel', imake:'chairs', cover:'images/bg1.jpg'});
+
+        this.bindModelToState(this._profile, ['cover'])
     }
+
 
     render() {
         return (
             <div>
                 <FullBleedLayout>
-                    <StretchedMedia src={ this.getCurrentBG() } className="transition-all" />
+                    <StretchedMedia src={ this.state.cover } className="transition-all" />
                     <CenteredLayout className="transition-all">
-                        <MakerCard onClick={()=>{ this.incrementBG() }} />
+                        <MakerCard profile={this._profile} />
                     </CenteredLayout>
                 </FullBleedLayout>
 
-                <div>
+                <div onClick={()=>{this._profile.setProperty('name', 'Edith Au')}}>
                     <p> TESTING BELOW FULLBLEED 1</p>
                     <p> TESTING BELOW FULLBLEED 2</p>
                     <p> TESTING BELOW FULLBLEED 3</p>
                 </div>
-                <div>
+                <div onClick={()=>{this.incrementBG()}}>
                     <p> TESTING BELOW FULLBLEED 1</p>
                     <p> TESTING BELOW FULLBLEED 2</p>
                     <p> TESTING BELOW FULLBLEED 3</p>
@@ -46,12 +49,11 @@ export default class Application extends React.Component {
     }
 
     incrementBG() {
-        this.setState({
-            bgIdx: this.state.bgIdx+1
-        });
+        this._bgIdx++;
+        this._profile.setProperty('cover', this.getCurrentBG());
     }
 
     getCurrentBG() {
-        return this.bgs[this.state.bgIdx % this.bgs.length];
+        return this._bgs[this._bgIdx % this._bgs.length];
     }
 }
