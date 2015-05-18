@@ -7,17 +7,17 @@ export default class ContentEditable extends React.Component {
 
     render()
     {
-        var tagClass = React.DOM[this.props.tag];
-        return <tagClass
+        return <this.props.tag
             {...this.props}
-            onInput={()=>{this.emitChange()}}
-            onBlur={()=>{this.emitChange()}}
+            onInput={(p_evt)=>{this.emitChange(p_evt)}}
+            onBlur={(p_evt)=>{this.emitBlur(p_evt)}}
             contentEditable={this.props.editable}
-            dangerouslySetInnerHTML={{__html: this.props.html}}></tagClass>;
+            dangerouslySetInnerHTML={{__html: this.props.html}}></this.props.tag>;
     }
 
     shouldComponentUpdate(nextProps){
-        return nextProps.html !== React.findDOMNode(this).innerHTML;
+        return nextProps.html !== React.findDOMNode(this).innerHTML ||
+                                    nextProps.editable !== this.props.editable;
     }
 
     componentDidUpdate() {
@@ -29,14 +29,22 @@ export default class ContentEditable extends React.Component {
     emitChange(evt){
         var html = React.findDOMNode(this).innerHTML;
         if (this.props.onChange && html !== this.lastHtml) {
-            evt.target = { value: html };
+            evt.value = html;
             this.props.onChange(evt);
         }
         this.lastHtml = html;
+    }
+
+    emitBlur(evt){
+        if (this.props.onBlur) {
+            evt.value = this.lastHtml || this.props.html;
+            this.props.onBlur(evt);
+        }
     }
 }
 
 ContentEditable.defaultProps = {
     editable: false,
-    tag: 'div'
+    tag: 'div',
+    html:''
 };

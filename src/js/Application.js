@@ -41,7 +41,7 @@ export default class Application extends ModelBoundComponent {
                     <p> TESTING BELOW FULLBLEED 2</p>
                     <p> TESTING BELOW FULLBLEED 3</p>
                 </div>
-                <div>
+                <div onClick={()=>{this.setState({editable:!this.state.editable})}}>
                     <p> TESTING BELOW FULLBLEED 1</p>
                     <p> TESTING BELOW FULLBLEED 2</p>
                     <p> TESTING BELOW FULLBLEED 3</p>
