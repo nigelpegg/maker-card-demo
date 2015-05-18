@@ -26,3 +26,5 @@ public/.DS_Store
 dist/src/build.js
 
 dist/src/styles.css
+
+dist/build/build.min.js
