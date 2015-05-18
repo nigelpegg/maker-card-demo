@@ -13,7 +13,7 @@ export default class CenteredLayout extends React.Component {
 
     render() {
         var shimStyle = {
-            display: "inline",
+            display: "inline-block",
             position: 'absolute',
             top: this.state.shimY,
             left: this.state.shimX,
@@ -25,9 +25,9 @@ export default class CenteredLayout extends React.Component {
         };
         return (
             <div ref="outerBox" style={outerStyle}>
-                <span ref="centerShim" style={shimStyle} {...this.props} >
+                <div ref="centerShim" style={shimStyle} {...this.props} >
                     {this.props.children}
-                </span>
+                </div>
             </div>
         );
     }

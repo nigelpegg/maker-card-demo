@@ -18,7 +18,7 @@ export default class ModelBoundComponent extends React.Component {
             p_propMap = tmpMap;
         }
         for (var modelPropName in p_propMap) {
-            this.state[p_propMap[modelPropName]] = p_model[modelPropName];
+            this.state[p_propMap[modelPropName]] = p_model.getProperty(modelPropName);
         }
         p_model.addEventListener('propertyChange',
             (p_evt)=>
@@ -26,7 +26,7 @@ export default class ModelBoundComponent extends React.Component {
                 var statePropName = p_propMap[p_evt.name];
                 if (statePropName) {
                     var newState = {};
-                    newState[statePropName] = p_model[p_evt.name];
+                    newState[statePropName] = p_model.getProperty(p_evt.name);
                     this.setState(newState);
                 }
             })
