@@ -41,7 +41,7 @@ export default class Application extends ModelBoundComponent {
                     <p> TESTING BELOW FULLBLEED 2</p>
                     <p> TESTING BELOW FULLBLEED 3</p>
                 </div>
-                <div onClick={()=>{this.setState({editable:!this.state.editable})}}>
+                <div onClick={()=>{this.debug()}}>
                     <p> TESTING BELOW FULLBLEED 1</p>
                     <p> TESTING BELOW FULLBLEED 2</p>
                     <p> TESTING BELOW FULLBLEED 3</p>
@@ -58,5 +58,9 @@ export default class Application extends ModelBoundComponent {
 
     getCurrentBG() {
         return this._bgs[this._bgIdx % this._bgs.length];
+    }
+
+    debug() {
+        debugger;
     }
 }
