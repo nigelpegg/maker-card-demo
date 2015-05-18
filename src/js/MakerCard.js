@@ -7,7 +7,7 @@ export default class MakerCard extends ModelBoundComponent {
         this.state = {
             test:'test'
         };
-        this.bindModelToState(profile, ['name', 'imake']);
+        this.bindStateToModel(profile, ['name', 'imake']);
     }
 
     render() {

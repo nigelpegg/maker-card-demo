@@ -5,7 +5,7 @@ export default class ModelBoundComponent extends React.Component {
         super(props);
     }
 
-    bindModelToState(p_model, p_propMap)
+    bindStateToModel(p_model, p_propMap)
     {
         if (this.state==null) {
             this.state = {};

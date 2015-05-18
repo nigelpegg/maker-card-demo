@@ -14,7 +14,10 @@ export default class Application extends ModelBoundComponent {
 
         this._profile = new BindableModel({name:'Nigel', imake:'chairs', cover:this.getCurrentBG()});
 
-        this.bindModelToState(this._profile, ['cover'])
+        this.state = {
+            editable: true
+        };
+        this.bindStateToModel(this._profile, ['cover'])
     }
 
 
@@ -24,7 +27,7 @@ export default class Application extends ModelBoundComponent {
                 <FullBleedLayout>
                     <StretchedMedia src={ this.state.cover } className="transition-all" />
                     <CenteredLayout className="transition-all">
-                        <MakerCard profile={this._profile} />
+                        <MakerCard profile={this._profile} editable={this.state.editable} />
                     </CenteredLayout>
                 </FullBleedLayout>
 
