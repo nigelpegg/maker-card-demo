@@ -1,7 +1,7 @@
 import ModelBoundComponent from './ModelBoundComponent';
-import ContentEditable from './ContentEditable';
+import ContentEditable from './../ui/ContentEditable';
 import React from 'react';
-import BindableModel from './BindableModel';
+import BindableModel from './../model/BindableModel';
 
 export default class BoundContentEditable extends ModelBoundComponent {
     constructor(props)

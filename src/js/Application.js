@@ -1,9 +1,10 @@
-import ModelBoundComponent from './ModelBoundComponent';
+import ModelBoundComponent from './components/boundUI/ModelBoundComponent';
 import MakerCard from './MakerCard';
-import FullBleedLayout from './FullBleedLayout';
-import StretchedMedia from './StretchedMedia';
-import CenteredLayout from './CenteredLayout';
-import BindableModel from './BindableModel';
+import FullBleedLayout from './components/ui/layouts/FullBleedLayout';
+import StretchedMedia from './components/ui/StretchedMedia';
+import CenteredLayout from './components/ui/layouts/CenteredLayout';
+import BindableModel from './components/model/BindableModel';
+
 
 export default class Application extends ModelBoundComponent {
     constructor(props) {

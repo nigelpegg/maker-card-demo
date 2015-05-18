@@ -1,5 +1,5 @@
-import ModelBoundComponent from './ModelBoundComponent';
-import BoundContentEditable from './BoundContentEditable';
+import ModelBoundComponent from './components/boundUI/ModelBoundComponent';
+import BoundContentEditable from './components/boundUI/BoundContentEditable';
 
 export default class MakerCard extends ModelBoundComponent {
     constructor(props) {
