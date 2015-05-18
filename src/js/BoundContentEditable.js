@@ -1,5 +1,7 @@
 import ModelBoundComponent from './ModelBoundComponent';
 import ContentEditable from './ContentEditable';
+import React from 'react';
+import BindableModel from './BindableModel';
 
 export default class BoundContentEditable extends ModelBoundComponent {
     constructor(props)
@@ -24,3 +26,7 @@ export default class BoundContentEditable extends ModelBoundComponent {
     }
 
 }
+BoundContentEditable.propTypes = {
+    model: React.PropTypes.instanceOf(BindableModel).isRequired,
+    propertyName: React.PropTypes.string.isRequired
+};
