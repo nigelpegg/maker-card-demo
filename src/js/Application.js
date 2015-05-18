@@ -17,7 +17,7 @@ export default class Application extends ModelBoundComponent {
         this.state = {
             editable: true
         };
-        this.bindStateToModel(this._profile, ['cover'])
+        this.bindStateToModel(this._profile, ['cover']);
     }
 
 
