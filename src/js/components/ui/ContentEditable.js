@@ -37,7 +37,7 @@ export default class ContentEditable extends React.Component {
 
     emitBlur(evt){
         if (this.props.onBlur) {
-            evt.value = this.lastHtml || this.props.html;
+            evt.value = (this.lastHtml!=null) ? this.lastHtml : this.props.html;
             this.props.onBlur(evt);
         }
     }
