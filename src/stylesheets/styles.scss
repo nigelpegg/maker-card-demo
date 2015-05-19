@@ -1,11 +1,13 @@
 body, html {
   background-color: #FFF;
   margin: 0px;
+  font-family: 'freight-sans-pro', sans-serif;
 }
 
 .maker-card {
-  width: 420px;
-  height: 530px;
+  padding: 50px;
+  width: 320px;
+  height: 430px;
   background-color: #fff;
   border-radius: 2px;
   text-align: center;
@@ -17,6 +19,12 @@ body, html {
 
 h1,h2,h3 {
   margin: 0;
+//  line-height: 120%;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 36px;
 }
 
 [data-contenteditable=true]:empty:before {

@@ -37,6 +37,10 @@ export default class Application extends ModelBoundComponent {
                     </CenteredLayout>
                 </FullBleedLayout>
 
+
+
+
+
                 <div onClick={()=>{this._profile.setProperty('name', 'Edith Au')}}>
                     <p> TESTING BELOW FULLBLEED 1</p>
                     <p> TESTING BELOW FULLBLEED 2</p>

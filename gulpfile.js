@@ -10,6 +10,8 @@ var streamify = require('gulp-streamify');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var notifier = require('node-notifier');
+var serve = require('gulp-serve');
+
 
 var path = {
     HTML: 'src/index.html',
@@ -126,4 +128,7 @@ gulp.task('watch-scss', function() {
 
 gulp.task('production', ['replaceHTML', 'build']);
 
-gulp.task('default', ['watch', 'watch-scss']);
+gulp.task('serve', serve('dist'));
+
+
+gulp.task('default', ['watch', 'watch-scss', 'serve']);

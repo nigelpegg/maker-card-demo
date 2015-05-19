@@ -44,15 +44,20 @@ export default class CenteredLayout extends React.Component {
             var outerBox = this.refs.outerBox.getDOMNode();
             var shim = this.refs.centerShim.getDOMNode();
             this.setState({
-                shimX: (this.props.horizontal=="true") ? Math.round((outerBox.offsetWidth - shim.offsetWidth) / 2) : 0,
-                shimY: (this.props.vertical=="true") ? Math.round((outerBox.offsetHeight - shim.offsetHeight) / 2) : 0,
+                shimX: (this.props.horizontal) ? Math.round((outerBox.offsetWidth - shim.offsetWidth) / 2) : 0,
+                shimY: (this.props.vertical) ? Math.round((outerBox.offsetHeight - shim.offsetHeight) / 2) : 0,
                 rendered: true
             });
         },0);
 
     }
 }
+CenteredLayout.propTypes = {
+    horizontal: React.PropTypes.bool,
+    vertical: React.PropTypes.bool
+};
+
 CenteredLayout.defaultProps = {
-    vertical : "true",
-    horizontal : "true"
+    vertical : true,
+    horizontal : true
 };
