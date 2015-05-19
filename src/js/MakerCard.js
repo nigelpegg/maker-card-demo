@@ -19,7 +19,7 @@ export default class MakerCard extends ModelBoundComponent {
                             tag="h1" placeholder="Your name"
                             editable={this.props.editable}
                             model={this.props.profile} propertyName="name" />
-                I Make <BoundContentEditable
+                I make <BoundContentEditable
                             tag="span" placeholder="Awesome stuff"
                             editable={this.props.editable}
                             model={this.props.profile} propertyName="imake"/>

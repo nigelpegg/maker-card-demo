@@ -14,8 +14,8 @@ export default class Application extends ModelBoundComponent {
         this._bgIdx = 0;
 
         this._profile = new BindableModel({
-            name:'Nigel',
-            imake:'chairs',
+            name:'Nigel Pegg',
+            imake:'Crafty UX',
             cover:this.getCurrentBG(),
             avatarURL: 'images/full_avatar.jpg'
         });
