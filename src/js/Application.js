@@ -13,7 +13,12 @@ export default class Application extends ModelBoundComponent {
         this._bgs = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg', 'images/bg4.jpg'];
         this._bgIdx = 0;
 
-        this._profile = new BindableModel({name:'Nigel', imake:'chairs', cover:this.getCurrentBG()});
+        this._profile = new BindableModel({
+            name:'Nigel',
+            imake:'chairs',
+            cover:this.getCurrentBG(),
+            avatarURL: 'images/full_avatar.jpg'
+        });
 
         this.state = {
             editable: true
