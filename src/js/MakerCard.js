@@ -11,11 +11,11 @@ export default class MakerCard extends ModelBoundComponent {
         return (
             <div {...this.props} className="maker-card">
                 <BoundContentEditable
-                            tag="h2"
+                            tag="h2" placeholder="Your name"
                             editable={this.props.editable}
                             model={this.props.profile} propertyName="name" />
                 I Make <BoundContentEditable
-                            tag="span"
+                            tag="span" placeholder="Awesome stuff"
                             editable={this.props.editable}
                             model={this.props.profile} propertyName="imake"/>
             </div>
