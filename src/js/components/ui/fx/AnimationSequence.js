@@ -2,6 +2,11 @@ import EventTarget from '../../model/EventTarget'
 
 export default class AnimationSequence extends EventTarget {
 
+    constructor(props)
+    {
+        super(props);
+    }
+
     sequenceTransitionsThrough(p_nodes, p_statesThrough, p_removeFinal, p_removeInitial, p_stagger, p_delay)
     {
         for (var i=0; i<p_nodes.length; i++) {
@@ -21,30 +26,32 @@ export default class AnimationSequence extends EventTarget {
         setTimeout(()=>
         {
             p_node.classList.remove(p_removeInitial);
-            var currentIdx = 0;
-            var transitionHandler = (e)=>
-            {
-                // the end condition here is either :
-                // don't remove final and end at l-1 OR remove final and end at l
-                var stopIndex = p_removeFinal ? p_statesThrough.length : p_statesThrough.length-1;
-                if (currentIdx==stopIndex) {
-                    // we've finished all transitions
-                    p_node.removeEventListener('transitionend', transitionHandler);
-                    p_node.style['transition'] = '';
-                    return;
-                }
+            if (p_statesThrough.length) {
 
-                p_node.classList.remove(p_statesThrough[currentIdx]);
+                var currentIdx = 0;
+                var transitionHandler = (e)=>
+                {
+                    // the end condition here is either :
+                    // don't remove final and end at l-1 OR remove final and end at l
+                    var stopIndex = p_removeFinal ? p_statesThrough.length : p_statesThrough.length-1;
+                    if (currentIdx==stopIndex) {
+                        // we've finished all transitions
+                        p_node.removeEventListener('transitionend', transitionHandler);
+                        p_node.style['transition'] = '';
+                        return;
+                    }
+    debugger;
+                    p_node.classList.remove(p_statesThrough[currentIdx]);
 
-                if (++currentIdx<p_statesThrough.length) {
-                    this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
-                }
-            };
+                    if (++currentIdx<p_statesThrough.length) {
+                        this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
+                    }
+                };
 
-            p_node.addEventListener('transitionend', transitionHandler);
+                p_node.addEventListener('transitionend', transitionHandler);
 
-            this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
-
+                this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
+            }
         },p_delay);
 
     }

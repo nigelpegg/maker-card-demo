@@ -4,6 +4,7 @@ import FullBleedLayout from './components/ui/layouts/FullBleedLayout';
 import StretchedMedia from './components/ui/StretchedMedia';
 import CenteredLayout from './components/ui/layouts/CenteredLayout';
 import BindableModel from './components/model/BindableModel';
+import AnimationSequence from './components/ui/fx/AnimationSequence'
 
 
 export default class Application extends ModelBoundComponent {
@@ -21,7 +22,8 @@ export default class Application extends ModelBoundComponent {
         });
 
         this.state = {
-            editable: true
+            editable: true,
+            resizeClass: 'transition-fade'
         };
         this.bindStateToModel(this._profile, ['cover']);
     }
@@ -31,26 +33,13 @@ export default class Application extends ModelBoundComponent {
         return (
             <div>
                 <FullBleedLayout>
-                    <StretchedMedia src={ this.state.cover } className="transition-all" />
-                    <CenteredLayout className="transition-all">
-                        <MakerCard profile={this._profile} editable={this.state.editable} />
+                    <StretchedMedia src={ this.state.cover } className={this.state.resizeClass} />
+                    <CenteredLayout className={this.state.resizeClass}>
+                        <MakerCard id="card" className="staged" profile={this._profile} editable={this.state.editable} />
                     </CenteredLayout>
                 </FullBleedLayout>
 
 
-
-
-
-                <div onClick={()=>{this._profile.setProperty('name', 'Edith Au')}}>
-                    <p> TESTING BELOW FULLBLEED 1</p>
-                    <p> TESTING BELOW FULLBLEED 2</p>
-                    <p> TESTING BELOW FULLBLEED 3</p>
-                </div>
-                <div onClick={()=>{this.incrementBG()}}>
-                    <p> TESTING BELOW FULLBLEED 1</p>
-                    <p> TESTING BELOW FULLBLEED 2</p>
-                    <p> TESTING BELOW FULLBLEED 3</p>
-                </div>
                 <div onClick={()=>{this.debug()}}>
                     <p> TESTING BELOW FULLBLEED 1</p>
                     <p> TESTING BELOW FULLBLEED 2</p>
@@ -59,6 +48,17 @@ export default class Application extends ModelBoundComponent {
 
             </div>
         );
+    }
+
+    componentDidMount()
+    {
+        setTimeout(()=>
+        {
+            var nodes = document.querySelectorAll('.maker-card');
+            var sequence = new AnimationSequence();
+            sequence.sequenceTransitionsThrough(nodes, [], false, 'staged');
+            this.setState({resizeClass:'transition-all'});
+        },500);
     }
 
     incrementBG() {

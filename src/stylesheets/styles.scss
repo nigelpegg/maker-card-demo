@@ -13,7 +13,14 @@ body, html {
   background-color: #fff;
   border-radius: 2px;
   text-align: center;
-  box-shadow: 2px 2px 7px 0px rgba(0,0,0,0.25);;
+  box-shadow: 2px 2px 7px 0px rgba(0,0,0,0.25);
+  transition: transform 1000ms, opacity 800ms;
+  &.staged {
+    opacity: 0;
+    transform-origin: left;
+    transform: translate3d(-60px, 0px, 0px) rotateY(30deg);
+    transition: transform 500ms, opacity 300ms;
+  }
 }
 .maker-card span, .maker-card div {
   font-size: 22px;
@@ -22,8 +29,11 @@ body, html {
   color: #8c8c8c;
 }
 
+.transition-fade {
+  transition: opacity 800ms;
+}
 .transition-all {
-  transition: all 500ms;
+  transition: all 800ms;
 }
 
 h1,h2,h3 {

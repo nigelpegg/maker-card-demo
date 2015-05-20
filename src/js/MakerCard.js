@@ -11,8 +11,12 @@ export default class MakerCard extends ModelBoundComponent {
 
     render() {
 
+        var classNames = 'maker-card ';
+        if (this.props.className) {
+            classNames += this.props.className;
+        }
         return (
-            <div {...this.props} className="maker-card">
+            <div id={this.props.id} className={classNames}>
 
                 <img src={this.state.avatarURL} className="avatar-img"/>
                 <BoundContentEditable
