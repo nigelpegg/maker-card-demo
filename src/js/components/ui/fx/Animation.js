@@ -10,7 +10,10 @@ Animation.propTypes = {
         React.PropTypes.arrayOf(React.PropTypes.string),
         React.PropTypes.string
     ]),
-    removeFinal: React.PropTypes.bool,
+    removeFinal: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.bool
+    ]),
     stagger: React.PropTypes.number,
     delay: React.PropTypes.number,
     onComplete: React.PropTypes.func

@@ -19,7 +19,11 @@ body, html {
     opacity: 0;
     transform-origin: left;
     transform: translate3d(-60px, 0px, 0px) rotateY(35deg);
-    transition: transform 800ms ease-out, opacity 800ms ease-out;
+    transition: transform 500ms ease-in, opacity 500ms ease-out;
+  }
+  &.bounce {
+    transform: translate3d(5px, 0px, 0px);
+    transition: transform 300ms ease-out;
   }
 }
 .maker-card span, .maker-card div {

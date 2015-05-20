@@ -42,6 +42,10 @@ export default class StaggeredAnimation extends EventTarget {
             var currentIdx = 0;
             var transitionHandler = (e)=>
             {
+console.log('new handler ' + this.blockHandler);
+                if (this.blockHandler) {
+                    return;
+                }
                 // the end condition here is either :
                 // don't remove final and end at l-1 OR remove final and end at l
                 var stopIndex = p_removeFinal ? p_statesThrough.length : p_statesThrough.length-1;
@@ -54,9 +58,13 @@ export default class StaggeredAnimation extends EventTarget {
                     }
                     return;
                 }
-                p_node.classList.remove(p_statesThrough[currentIdx]);
+                if (currentIdx>=0) {
+                    console.log('removing '+p_statesThrough[currentIdx] + ' ' + (new Date()).getTime());
+                    p_node.classList.remove(p_statesThrough[currentIdx]);
+                }
 
                 if (++currentIdx<p_statesThrough.length) {
+                    console.log('transitioning to '+p_statesThrough[currentIdx] + ' ' + (new Date()).getTime());
                     this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
                 }
             };
@@ -65,9 +73,11 @@ export default class StaggeredAnimation extends EventTarget {
 
             if (p_removeInitial) {
                 currentIdx = -1;
+                console.log('removing '+p_removeInitial + ' ' + (new Date()).getTime());
                 this.writeTransition(p_node, this.readTransition(p_node));
                 p_node.classList.remove(p_removeInitial);
             } else {
+                console.log('transitioning to '+p_statesThrough[currentIdx] + ' ' + (new Date()).getTime());
                 this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
             }
         },p_delay);
@@ -76,6 +86,8 @@ export default class StaggeredAnimation extends EventTarget {
 
     transitionNodeToState(p_node, p_state)
     {
+        // for some reason, this sneaky stuff triggers the transitionend event. Block it from having an impact.
+        this.blockHandler = true;
 
         // sneaky method that 'pre-reads' the transition defined in the next state,
         // applies it inline, then triggers the move to the next state
@@ -91,9 +103,10 @@ export default class StaggeredAnimation extends EventTarget {
         this.writeTransition(p_node,trans);
 
         // need to wait a frame to make sure the transition exists before the new state
-        setTimeout(function()
+        setTimeout(()=>
         {
             p_node.classList.add(p_state);
+            this.blockHandler = false;
         },5)
     }
 
