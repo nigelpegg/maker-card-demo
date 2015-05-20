@@ -19,7 +19,6 @@ body, html {
     opacity: 0;
     transform-origin: left;
     transform: translate3d(-60px, 0px, 0px) rotateY(35deg);
-
     transition: transform 800ms ease-out, opacity 800ms ease-out;
   }
 }

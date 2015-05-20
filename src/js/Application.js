@@ -4,7 +4,9 @@ import FullBleedLayout from './components/ui/layouts/FullBleedLayout';
 import StretchedMedia from './components/ui/StretchedMedia';
 import CenteredLayout from './components/ui/layouts/CenteredLayout';
 import BindableModel from './components/model/BindableModel';
-import StaggeredAnimation from './components/ui/fx/StaggeredAnimation'
+
+import AnimationSequence from './components/ui/fx/AnimationSequence';
+import Animation from './components/ui/fx/Animation'
 
 
 export default class Application extends ModelBoundComponent {
@@ -46,6 +48,9 @@ export default class Application extends ModelBoundComponent {
                     <p> TESTING BELOW FULLBLEED 3</p>
                 </div>
 
+                <AnimationSequence ref="entrance" >
+                    <Animation from="staged" selector="#card" />
+                </AnimationSequence>
             </div>
         );
     }
@@ -54,11 +59,7 @@ export default class Application extends ModelBoundComponent {
     {
         setTimeout(()=>
         {
-            var sequence = new StaggeredAnimation({
-                nodes: document.querySelectorAll('.maker-card'),
-                from:'staged'
-            });
-
+            this.refs.entrance.play();
             this.setState({resizeClass:'transition-all'});
         },500);
     }
