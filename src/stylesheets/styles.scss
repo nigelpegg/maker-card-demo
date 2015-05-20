@@ -14,13 +14,13 @@ body, html {
   border-radius: 2px;
   text-align: center;
   box-shadow: 2px 2px 7px 0px rgba(0,0,0,0.25);
-  transition: transform 800ms ease-out, opacity 800ms ease-out;
   transform-origin: left;
   &.staged {
     opacity: 0;
     transform-origin: left;
     transform: translate3d(-60px, 0px, 0px) rotateY(35deg);
-    transition: transform 500ms, opacity 300ms;
+
+    transition: transform 800ms ease-out, opacity 800ms ease-out;
   }
 }
 .maker-card span, .maker-card div {

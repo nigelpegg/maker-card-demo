@@ -6,11 +6,11 @@ export default class StaggeredAnimation extends EventTarget {
     {
         super(props);
         if (props.nodes) {
-            var states = props.classes || [];
+            var states = props.to || [];
             var removeFinal = (props.removeFinal!=null) ? props.removeFinal : false;
             var stagger = (props.stagger!=null) ? props.stagger : 0;
             var delay = (props.delay!=null) ? props.delay : 0;
-            this.sequenceTransitionsThrough(props.nodes, states, removeFinal, props.removeInitial, stagger, delay);
+            this.sequenceTransitionsThrough(props.nodes, states, removeFinal, props.from, stagger, delay);
         }
     }
 
@@ -28,7 +28,7 @@ export default class StaggeredAnimation extends EventTarget {
                 ()=>
                 {
                     if (++finished>=p_nodes.length) {
-                        this.dispatchEvent({type:'sequenceend'});
+                        this.dispatchEvent({type:'animationend'});
                     }
                 });
             }
@@ -65,6 +65,7 @@ export default class StaggeredAnimation extends EventTarget {
 
             if (p_removeInitial) {
                 currentIdx = -1;
+                this.writeTransition(p_node, this.readTransition(p_node));
                 p_node.classList.remove(p_removeInitial);
             } else {
                 this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
@@ -98,9 +99,10 @@ export default class StaggeredAnimation extends EventTarget {
 
     readTransition(p_node)
     {
-        var prop = p_node.style['transition-property'];
-        var dur = p_node.style['transition-duration'];
-        var ease = p_node.style['transition-timing-function'];
+        var style = window.getComputedStyle(p_node);
+        var prop = style['transition-property'];
+        var dur = style['transition-duration'];
+        var ease = style['transition-timing-function'];
         return {prop:prop, dur:dur, ease:ease};
     }
 

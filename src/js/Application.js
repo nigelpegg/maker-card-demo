@@ -54,10 +54,9 @@ export default class Application extends ModelBoundComponent {
     {
         setTimeout(()=>
         {
-            var nodes = document.querySelectorAll('.maker-card');
             var sequence = new StaggeredAnimation({
-                nodes: nodes,
-                removeInitial:'staged'
+                nodes: document.querySelectorAll('.maker-card'),
+                from:'staged'
             });
 
             this.setState({resizeClass:'transition-all'});
