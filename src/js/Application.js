@@ -57,6 +57,7 @@ export default class Application extends ModelBoundComponent {
             var nodes = document.querySelectorAll('.maker-card');
             var sequence = new AnimationSequence();
             sequence.sequenceTransitionsThrough(nodes, [], false, 'staged');
+
             this.setState({resizeClass:'transition-all'});
         },500);
     }

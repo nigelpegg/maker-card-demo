@@ -6,7 +6,7 @@ export default class AnimationSequence extends EventTarget {
     {
         super(props);
     }
-
+    
     sequenceTransitionsThrough(p_nodes, p_statesThrough, p_removeFinal, p_removeInitial, p_stagger, p_delay)
     {
         for (var i=0; i<p_nodes.length; i++) {
@@ -15,41 +15,51 @@ export default class AnimationSequence extends EventTarget {
 
         setTimeout(()=>
         {
+            var finished = 0;
             for (var i=0; i<p_nodes.length; i++) {
-                this.sequenceTransitionThrough(p_nodes[i], p_statesThrough, p_removeFinal, p_removeInitial, p_stagger*i);
+                this.sequenceTransitionThrough(p_nodes[i], p_statesThrough, p_removeFinal, p_removeInitial, p_stagger*i,
+                ()=>
+                {
+                    if (++finished>=p_nodes.length) {
+                        this.dispatchEvent({type:'sequenceend'});
+                    }
+                });
             }
         }, p_delay)
     }
 
-    sequenceTransitionThrough(p_node, p_statesThrough, p_removeFinal, p_removeInitial, p_delay)
+    sequenceTransitionThrough(p_node, p_statesThrough, p_removeFinal, p_removeInitial, p_delay, p_callBack)
     {
         setTimeout(()=>
         {
-            p_node.classList.remove(p_removeInitial);
-            if (p_statesThrough.length) {
-
-                var currentIdx = 0;
-                var transitionHandler = (e)=>
-                {
-                    // the end condition here is either :
-                    // don't remove final and end at l-1 OR remove final and end at l
-                    var stopIndex = p_removeFinal ? p_statesThrough.length : p_statesThrough.length-1;
-                    if (currentIdx==stopIndex) {
-                        // we've finished all transitions
-                        p_node.removeEventListener('transitionend', transitionHandler);
-                        p_node.style['transition'] = '';
-                        return;
+            var currentIdx = 0;
+            var transitionHandler = (e)=>
+            {
+                // the end condition here is either :
+                // don't remove final and end at l-1 OR remove final and end at l
+                var stopIndex = p_removeFinal ? p_statesThrough.length : p_statesThrough.length-1;
+                if (currentIdx>=stopIndex) {
+                    // we've finished all transitions
+                    p_node.removeEventListener('transitionend', transitionHandler);
+                    p_node.style['transition'] = '';
+                    if (p_callBack) {
+                        p_callBack();
                     }
-    debugger;
-                    p_node.classList.remove(p_statesThrough[currentIdx]);
+                    return;
+                }
+                p_node.classList.remove(p_statesThrough[currentIdx]);
 
-                    if (++currentIdx<p_statesThrough.length) {
-                        this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
-                    }
-                };
+                if (++currentIdx<p_statesThrough.length) {
+                    this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
+                }
+            };
 
-                p_node.addEventListener('transitionend', transitionHandler);
+            p_node.addEventListener('transitionend', transitionHandler);
 
+            if (p_removeInitial) {
+                currentIdx = -1;
+                p_node.classList.remove(p_removeInitial);
+            } else {
                 this.transitionNodeToState(p_node, p_statesThrough[currentIdx]);
             }
         },p_delay);
