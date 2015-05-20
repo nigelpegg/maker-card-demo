@@ -42,7 +42,6 @@ export default class StaggeredAnimation extends EventTarget {
             var currentIdx = 0;
             var transitionHandler = (e)=>
             {
-console.log('new handler ' + this.blockHandler);
                 if (this.blockHandler) {
                     return;
                 }

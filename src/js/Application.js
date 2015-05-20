@@ -49,7 +49,7 @@ export default class Application extends ModelBoundComponent {
                 </div>
 
                 <AnimationSequence ref="entrance" onComplete={()=>{}} >
-                    <Animation from="staged" to="bounce" removeFinal="true" selector="#card" onComplete={()=>{}} />
+                    <Animation from="staged" to={['bounce','normal','left','bounce-right','right']} selector="#card" onComplete={()=>{}} />
                 </AnimationSequence>
             </div>
         );
