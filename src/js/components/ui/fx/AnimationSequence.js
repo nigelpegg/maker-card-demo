@@ -55,3 +55,6 @@ export default class AnimationSequence extends React.Component {
             });
     }
 }
+AnimationSequence.propTypes = {
+    onComplete: React.PropTypes.func
+};
