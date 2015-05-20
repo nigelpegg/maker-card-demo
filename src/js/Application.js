@@ -48,8 +48,8 @@ export default class Application extends ModelBoundComponent {
                     <p> TESTING BELOW FULLBLEED 3</p>
                 </div>
 
-                <AnimationSequence ref="entrance" >
-                    <Animation from="staged" selector="#card" />
+                <AnimationSequence ref="entrance" onComplete={()=>{debugger;}} >
+                    <Animation from="staged" selector="#card" onComplete={()=>{debugger;}} />
                 </AnimationSequence>
             </div>
         );

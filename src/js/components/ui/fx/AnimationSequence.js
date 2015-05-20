@@ -18,6 +18,8 @@ export default class AnimationSequence extends React.Component {
 
     play()
     {
+        var totalAnimations = React.Children.count(this.props.children);
+        var completedAnimations = 0;
         React.Children.forEach(this.props.children,
             (p_child)=>
             {
@@ -35,6 +37,21 @@ export default class AnimationSequence extends React.Component {
                     stagger: p_child.props.stagger,
                     delay: p_child.props.delay
                 });
+                if (p_child.props.onComplete) {
+                    anim.addEventListener('animationend', ()=>
+                    {
+                        p_child.props.onComplete();
+                    });
+                }
+
+                if (this.props.onComplete) {
+                    anim.addEventListener('animationend', ()=>
+                    {
+                        if (++completedAnimations>=totalAnimations) {
+                            this.props.onComplete();
+                        }
+                    });
+                }
             });
     }
 }
