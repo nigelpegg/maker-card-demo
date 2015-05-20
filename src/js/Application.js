@@ -4,7 +4,7 @@ import FullBleedLayout from './components/ui/layouts/FullBleedLayout';
 import StretchedMedia from './components/ui/StretchedMedia';
 import CenteredLayout from './components/ui/layouts/CenteredLayout';
 import BindableModel from './components/model/BindableModel';
-import AnimationSequence from './components/ui/fx/AnimationSequence'
+import StaggeredAnimation from './components/ui/fx/StaggeredAnimation'
 
 
 export default class Application extends ModelBoundComponent {
@@ -55,8 +55,10 @@ export default class Application extends ModelBoundComponent {
         setTimeout(()=>
         {
             var nodes = document.querySelectorAll('.maker-card');
-            var sequence = new AnimationSequence();
-            sequence.sequenceTransitionsThrough(nodes, [], false, 'staged');
+            var sequence = new StaggeredAnimation({
+                nodes: nodes,
+                removeInitial:'staged'
+            });
 
             this.setState({resizeClass:'transition-all'});
         },500);

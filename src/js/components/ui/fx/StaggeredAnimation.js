@@ -1,12 +1,19 @@
 import EventTarget from '../../model/EventTarget'
 
-export default class AnimationSequence extends EventTarget {
+export default class StaggeredAnimation extends EventTarget {
 
     constructor(props)
     {
         super(props);
+        if (props.nodes) {
+            var states = props.classes || [];
+            var removeFinal = (props.removeFinal!=null) ? props.removeFinal : false;
+            var stagger = (props.stagger!=null) ? props.stagger : 0;
+            var delay = (props.delay!=null) ? props.delay : 0;
+            this.sequenceTransitionsThrough(props.nodes, states, removeFinal, props.removeInitial, stagger, delay);
+        }
     }
-    
+
     sequenceTransitionsThrough(p_nodes, p_statesThrough, p_removeFinal, p_removeInitial, p_stagger, p_delay)
     {
         for (var i=0; i<p_nodes.length; i++) {
