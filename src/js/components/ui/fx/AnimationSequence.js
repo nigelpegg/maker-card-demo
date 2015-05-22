@@ -29,13 +29,25 @@ export default class AnimationSequence extends React.Component {
                         to = [to];
                     }
                 }
+                var stagger = p_child.props.stagger;
+                if (stagger!=null) {
+                    if (typeof stagger === 'string') {
+                        stagger = parseInt(stagger);
+                    }
+                }
+                var delay = p_child.props.delay;
+                if (delay!=null) {
+                    if (typeof delay === 'string') {
+                        delay = parseInt(delay);
+                    }
+                }
                 var anim = new StaggeredAnimation({
                     nodes:document.querySelectorAll(p_child.props.selector),
                     from:p_child.props.from,
                     to: to,
                     removeFinal: p_child.props.removeFinal,
-                    stagger: p_child.props.stagger,
-                    delay: p_child.props.delay
+                    stagger: stagger,
+                    delay: delay
                 });
                 if (p_child.props.onComplete) {
                     anim.addEventListener('animationend', ()=>

@@ -14,8 +14,15 @@ Animation.propTypes = {
         React.PropTypes.string,
         React.PropTypes.bool
     ]),
-    stagger: React.PropTypes.number,
-    delay: React.PropTypes.number,
+    stagger: React.PropTypes.oneOfType([
+        React.PropTypes.number,
+        React.PropTypes.string
+    ]),
+
+    delay: React.PropTypes.oneOfType([
+        React.PropTypes.number,
+        React.PropTypes.string
+    ]),
     onComplete: React.PropTypes.func
 
 };

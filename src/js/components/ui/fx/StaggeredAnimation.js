@@ -52,6 +52,10 @@ export default class StaggeredAnimation extends EventTarget {
                     // we've finished all transitions
                     p_node.removeEventListener('transitionend', transitionHandler);
                     p_node.style['transition'] = '';
+                    if (!p_removeFinal && p_statesThrough.length>0) {
+                        // leaving the node in transitioned state - write down final class applied
+                        p_node.setAttribute('data-final-state', p_statesThrough[p_statesThrough.length-1]);
+                    }
                     if (p_callBack) {
                         p_callBack();
                     }
@@ -91,6 +95,12 @@ export default class StaggeredAnimation extends EventTarget {
         // sneaky method that 'pre-reads' the transition defined in the next state,
         // applies it inline, then triggers the move to the next state
         p_node.style['transition'] = '';   // clean up any inline transitions
+
+        var lastState = p_node.getAttribute('data-final-state');
+        if (lastState) {
+            p_node.classList.remove(lastState);
+            p_node.setAttribute('data-final-state', '');
+        }
 
         // get the transition specified in the new state
         p_node.classList.add(p_state);

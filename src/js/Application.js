@@ -13,13 +13,10 @@ export default class Application extends ModelBoundComponent {
     constructor(props) {
         super(props);
 
-        this._bgs = ['images/bg1.jpg', 'images/bg2.jpg', 'images/bg3.jpg', 'images/bg4.jpg'];
-        this._bgIdx = 0;
-
         this._profile = new BindableModel({
             name:'Nigel Pegg',
             imake:'Crafty UX',
-            cover:this.getCurrentBG(),
+            cover:'images/bg1.jpg',
             avatarURL: 'images/full_avatar.jpg'
         });
 
@@ -37,10 +34,22 @@ export default class Application extends ModelBoundComponent {
                 <FullBleedLayout>
                     <StretchedMedia src={ this.state.cover } className={this.state.resizeClass} />
                     <CenteredLayout className={this.state.resizeClass}>
-                        <MakerCard id="card" className="staged" profile={this._profile} editable={this.state.editable} />
+                        <MakerCard className="staged card" profile={this._profile} editable={this.state.editable} />
                     </CenteredLayout>
                 </FullBleedLayout>
 
+
+                <AnimationSequence ref="entrance" onComplete={()=>{}} >
+                    <Animation selector=".card" from="staged" to={['bounce','normal']} stagger="250" onComplete={()=>{}} />
+                </AnimationSequence>
+
+                <AnimationSequence ref="left" onComplete={()=>{}} >
+                    <Animation selector=".card" to={['bounce-right','bounce-left','left']} onComplete={()=>{console.log('left')}} />
+                </AnimationSequence>
+
+                <AnimationSequence ref="right" onComplete={()=>{}} >
+                    <Animation selector=".card" to={['pull-left','bounce-right','right']} onComplete={()=>{}} />
+                </AnimationSequence>
 
                 <div onClick={()=>{this.debug()}}>
                     <p> TESTING BELOW FULLBLEED 1</p>
@@ -48,15 +57,13 @@ export default class Application extends ModelBoundComponent {
                     <p> TESTING BELOW FULLBLEED 3</p>
                 </div>
 
-                <AnimationSequence ref="entrance" onComplete={()=>{}} >
-                    <Animation from="staged" to={['bounce','normal','left','bounce-right','right']} selector="#card" onComplete={()=>{}} />
-                </AnimationSequence>
             </div>
         );
     }
 
     componentDidMount()
     {
+        window.addEventListener('keydown', (p_evt)=>{this.onKeyDown(p_evt)})
         setTimeout(()=>
         {
             this.refs.entrance.play();
@@ -64,13 +71,13 @@ export default class Application extends ModelBoundComponent {
         },500);
     }
 
-    incrementBG() {
-        this._bgIdx++;
-        this._profile.setProperty('cover', this.getCurrentBG());
-    }
-
-    getCurrentBG() {
-        return this._bgs[this._bgIdx % this._bgs.length];
+    onKeyDown(p_evt)
+    {
+        if (p_evt.keyCode == 37) {
+            this.refs.left.play();
+        } else if (p_evt.keyCode == 39) {
+            this.refs.right.play();
+        }
     }
 
     debug() {

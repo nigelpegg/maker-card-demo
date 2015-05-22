@@ -22,26 +22,43 @@ body, html {
     transition: transform 500ms linear, opacity 200ms ease-in-out;
   }
   &.bounce {
-    transform: translate3d(0px, 5px, 0px);
-    transition: transform 200ms ease-out;
+    transform: translate3d(0px, 10px, 0px);
+    transition: transform 300ms ease-out;
   }
   &.normal {
     transform: translate3d(0px, 0px, 0px);
     transition: transform 150ms ease-out;
   }
-  &.left {
+  &.normal-pull-left {
     transform: translate3d(-20px, 0px, 0px);
     transition: transform 200ms ease-out 100ms;
   }
   &.bounce-right {
-    transform: translate3d(305px, 0px, 0px);
+    transform: translate3d(310px, 0px, 0px);
     transition: transform 500ms ease-in-out;
   }
   &.right {
     transform: translate3d(300px, 0px, 0px);
     transition: transform 400ms ease-in-out;
   }
+
+  &.bounce-left {
+    transform: translate3d(-310px, 0px, 0px);
+    transition: transform 500ms ease-in-out;
+  }
+  &.pull-left {
+    transform: translate3d(-310px, 0px, 0px);
+    transition: transform 400ms ease-in-out;
+  }
+  &.left {
+    transform: translate3d(-300px, 0px, 0px);
+    transition: transform 400ms ease-in-out;
+  }
 }
+
+.card {
+}
+
 .maker-card span, .maker-card div {
   font-size: 22px;
   line-height: 33px;
