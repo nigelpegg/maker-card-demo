@@ -1,5 +1,4 @@
 import React from 'react';
-import DebugLogger from '../../DebugLogger'
 
 export default class CenteredLayout extends React.Component {
     constructor(props) {
@@ -44,8 +43,6 @@ export default class CenteredLayout extends React.Component {
         {
             var outerBox = this.refs.outerBox.getDOMNode();
             var shim = this.refs.centerShim.getDOMNode();
-DebugLogger.log('Center: '+outerBox.offsetWidth + ' ' + outerBox.offsetHeight);
-DebugLogger.log('Shim: '+shim.offsetWidth + ' ' + shim.offsetHeight);
             this.setState({
                 shimX: (this.props.horizontal) ? Math.round((outerBox.offsetWidth - shim.offsetWidth) / 2) : 0,
                 shimY: (this.props.vertical) ? Math.round((outerBox.offsetHeight - shim.offsetHeight) / 2) : 0,

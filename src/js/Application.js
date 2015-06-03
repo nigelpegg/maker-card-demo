@@ -6,14 +6,16 @@ import CenteredLayout from './components/ui/layouts/CenteredLayout';
 import BindableModel from './components/model/BindableModel';
 
 import AnimationSequence from './components/ui/fx/AnimationSequence';
-import Animation from './components/ui/fx/Animation'
+import Animation from './components/ui/fx/Animation';
 
-import DebugLogger from './components/DebugLogger'
-
+import DebugLogger from './components/DebugLogger';
+import React from 'react';
 
 export default class Application extends ModelBoundComponent {
     constructor(props) {
         super(props);
+
+        React.initializeTouchEvents(true);
 
         this._profile = new BindableModel({
             name:'Nigel Pegg',
@@ -34,12 +36,11 @@ export default class Application extends ModelBoundComponent {
         return (
             <div>
                 <FullBleedLayout>
-                    <StretchedMedia src={ this.state.cover } className={this.state.resizeClass} />
+                    <StretchedMedia src={ this.state.cover } className={this.state.resizeClass} onTouchStart={(e)=>{this.handleTouch(e)}} />
                     <CenteredLayout className={this.state.resizeClass}>
                         <MakerCard className="staged card" profile={this._profile} editable={this.state.editable} />
                     </CenteredLayout>
                 </FullBleedLayout>
-
 
                 <AnimationSequence ref="entrance" onComplete={()=>{}} >
                     <Animation selector=".card" from="staged" to={['bounce','normal']} stagger="250" onComplete={()=>{}} />
@@ -80,6 +81,18 @@ export default class Application extends ModelBoundComponent {
         } else if (p_evt.keyCode == 39) {
             this.refs.right.play();
         }
+    }
+
+    handleTouch(p_evt)
+    {
+        if (this._anim=="right") {
+            this._anim = "left";
+            this.refs.left.play();
+        } else {
+            this._anim = "right";
+            this.refs.right.play();
+        }
+        DebugLogger.log('t')
     }
 
     debug() {

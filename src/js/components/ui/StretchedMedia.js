@@ -1,5 +1,4 @@
 import React from 'react';
-import DebugLogger from '../DebugLogger'
 
 export default class StretchedMedia extends React.Component {
 
@@ -53,7 +52,6 @@ export default class StretchedMedia extends React.Component {
             var mediaAspect = media.width/media.height;
             var boxAspect = outerBox.offsetWidth/outerBox.offsetHeight;
             var newState = {rendered:true};
-DebugLogger.log('Stretch: '+outerBox.offsetWidth + ' '+outerBox.offsetHeight);
             if (boxAspect>mediaAspect) {
                 // pin sides, grow vertically
                 newState.imgW = outerBox.offsetWidth;

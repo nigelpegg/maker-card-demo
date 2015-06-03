@@ -41,8 +41,8 @@ export default class DebugLogger extends React.Component {
         this._loggerStyle.position = 'absolute';
         this._loggerStyle.background = 'white';
         this._loggerStyle.top = 0;
-        this._loggerStyle.width = 300;
-        this._loggerStyle.height = 400;
+        this._loggerStyle.width = 200;
+        this._loggerStyle.height = 270;
         this._loggerStyle.overflow = 'scroll';
         this._loggerStyle.fontFamily = 'Menlo';
     }

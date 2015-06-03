@@ -1,5 +1,4 @@
 import React from 'react';
-import DebugLogger from '../../DebugLogger'
 
 export default class FullBleedLayout extends React.Component {
 
@@ -35,7 +34,6 @@ export default class FullBleedLayout extends React.Component {
 
         var h = document.documentElement.clientHeight
             || document.body.clientHeight;
-DebugLogger.log('FullBleedn: '+w + ' '+h);
         this.setState({
             windowW: w,
             windowH: h
