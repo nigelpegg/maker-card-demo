@@ -62,7 +62,7 @@ export default class StaggeredAnimation extends EventTarget {
                     return;
                 }
                 if (currentIdx>=0) {
-                    console.log('removing '+p_statesThrough[currentIdx] + ' ' + (new Date()).getTime());
+//                    console.log('removing '+p_statesThrough[currentIdx] + ' ' + (new Date()).getTime());
                     p_node.classList.remove(p_statesThrough[currentIdx]);
                 }
 
@@ -75,7 +75,7 @@ export default class StaggeredAnimation extends EventTarget {
 
             if (p_removeInitial) {
                 currentIdx = -1;
-                console.log('removing '+p_removeInitial + ' ' + (new Date()).getTime());
+//                console.log('removing '+p_removeInitial + ' ' + (new Date()).getTime());
                 this.writeTransition(p_node, this.readTransition(p_node));
                 p_node.classList.remove(p_removeInitial);
             } else {
@@ -96,7 +96,7 @@ export default class StaggeredAnimation extends EventTarget {
 
         var lastState = p_node.getAttribute('data-final-state');
         if (lastState) {
-            console.log('removing lastState '+lastState + ' ' + (new Date()).getTime());
+//            console.log('removing lastState '+lastState + ' ' + (new Date()).getTime());
             p_node.classList.remove(lastState);
             p_node.setAttribute('data-final-state', '');
         }
@@ -114,7 +114,7 @@ export default class StaggeredAnimation extends EventTarget {
         // need to wait a frame to make sure the transition exists before the new state
         setTimeout(()=>
         {
-            console.log('transitioning to '+p_state + ' ' + (new Date()).getTime());
+//            console.log('transitioning to '+p_state + ' ' + (new Date()).getTime());
             p_node.classList.add(p_state);
         },5)
     }

@@ -8,6 +8,8 @@ import BindableModel from './components/model/BindableModel';
 import AnimationSequence from './components/ui/fx/AnimationSequence';
 import Animation from './components/ui/fx/Animation'
 
+import DebugLogger from './components/DebugLogger'
+
 
 export default class Application extends ModelBoundComponent {
     constructor(props) {

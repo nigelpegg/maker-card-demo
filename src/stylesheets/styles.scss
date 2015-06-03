@@ -15,15 +15,28 @@ body, html {
   text-align: center;
   box-shadow: 2px 2px 7px 0px rgba(0,0,0,0.25);
   transform-origin: top;
+
+  @media (max-width: 360px) {
+    padding: 40px;
+    width: 260px;
+    height: 325px;
+  }
+
+  @media (max-height: 360px) {
+    padding: 25px;
+    width: 160px;
+    height: 200px;
+  }
+
   &.staged {
     opacity: 0;
     transform-origin: top;
-    transform: translate3d(0px, -150px, 0px) rotateX(00deg);
-    transition: transform 500ms linear, opacity 200ms ease-in-out;
+    transform: translate3d(0px, -100px, 0px);
+    transition: transform 400ms linear, opacity 450ms ease-in-out;
   }
   &.bounce {
     transform: translate3d(0px, 10px, 0px);
-    transition: transform 300ms ease-out;
+    transition: transform 100ms ease-out;
   }
   &.normal {
     transform: translate3d(0px, 0px, 0px);
@@ -64,6 +77,10 @@ body, html {
   line-height: 33px;
   padding: 0 2px;
   color: #8c8c8c;
+  @media (max-height: 360px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
 
 .transition-fade {
@@ -80,6 +97,9 @@ h1,h2,h3 {
 
 h1 {
   font-size: 36px;
+  @media (max-height: 360px) {
+    font-size: 20px;
+  }
 }
 
 [data-contenteditable=true]:empty:before {
@@ -101,8 +121,13 @@ h1 {
   background: #f7f7f7;
 }
 
+
 .avatar-img {
   width: 165px;
   height: 165px;
   border-radius: 50%;
+  @media (max-height: 360px) {
+    width: 85px;
+    height: 85px;
+  }
 }
