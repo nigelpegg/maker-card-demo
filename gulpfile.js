@@ -110,7 +110,8 @@ gulp.task('replaceHTML', function(){
         .pipe(gulp.dest(path.DEST));
 });
 
-gulp.task('compile-scss', function() {
+function compileScss()
+{
     gulp.src(path.STYLES)
         .pipe(sass({ indentedSyntax: false, errLogToConsole: true }))
         .on('error', notifyError)
@@ -120,9 +121,14 @@ gulp.task('compile-scss', function() {
         }))
         .pipe(gulp.dest(path.DEST_SRC));
     checkSuccess();
+}
+
+gulp.task('compile-scss', function() {
+    compileScss();
 });
 
 gulp.task('watch-scss', function() {
+    compileScss();
     gulp.watch(path.STYLES, ['compile-scss']);
 });
 
